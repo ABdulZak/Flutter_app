@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatefulWidget {
@@ -35,12 +37,12 @@ class _NewTransactionState extends State<NewTransaction> {
     return Card(
       elevation: 5,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: const InputDecoration(labelText: 'Title'),
               controller: titleController,
               onSubmitted: (_) => submitData(),
               // onChanged: (val) {
@@ -48,16 +50,30 @@ class _NewTransactionState extends State<NewTransaction> {
               // },
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: const InputDecoration(labelText: 'Amount'),
               controller: amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => submitData(),
               // onChanged: (val) => amountInput = val,
             ),
-            FlatButton(
-              child: Text('Add Transaction'),
-              textColor: Colors.purple,
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  const Text('No Date Chosen!'),
+                  FlatButton(
+                    onPressed: () {},
+                    textColor: Theme.of(context).primaryColor,
+                    child: const Text('Choose Date!',style: TextStyle(fontWeight: FontWeight.bold),),
+                  )
+                ],
+              ),
+            ),
+            RaisedButton(
+              color: Theme.of(context).primaryColor,
+              textColor: Theme.of(context).textTheme.button?.color,
               onPressed: submitData,
+              child: const Text('Add Transaction'),
             ),
           ],
         ),
